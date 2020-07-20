@@ -14,35 +14,46 @@ public class ClickerCounter : MonoBehaviour
     public TextMeshProUGUI HeadpatScore;
     public TextMeshProUGUI WaifuScore;
     public ParticleSystem heartsParticles;
+    public SpriteRenderer currentSprite;
     private static int barOffset = 2;
+    private bool isFlipped = false;
     // Start is called before the first frame update
     void Start()
     {
         numberOfClicks = barOffset;
         
     }
-    
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 spawnPosition = new Vector3(mousePosition.x, mousePosition.y, 40f);
-            Quaternion rotation = new Quaternion(1f, 1f, 1f, -1f);
-            ParticleSystem ps = Instantiate(heartsParticles, spawnPosition, rotation) as ParticleSystem;
-            ps.Play();
-            Destroy(ps.gameObject, 1.5f);
-           
+            //Spawns Particle on mouse position // Also destroys it
+            SpawnParticle();
 
+            //Flip Sprite
+            if (!isFlipped)
+            {
+                currentSprite.flipX = true;
+                isFlipped = true;
+            }
+   
+            else
+            {
+                currentSprite.flipX = false;
+                isFlipped = false;
+            }
+                
 
-
-
+            //Increase clicks
             numberOfClicks++;
             totalClicks++;
+            //If over bar then reset it
             if (numberOfClicks > 12)
             {
                 numberOfClicks = barOffset;
+                //Checks for Data on Points multipliers and adds the points
                 Upgrades.addWaifuPoints();
             }
 
@@ -54,4 +65,16 @@ public class ClickerCounter : MonoBehaviour
         //Set Waifu Score
         WaifuScore.text = waifuPoints.ToString();
     }
+
+    void SpawnParticle()
+    {
+        //Get mouse position and spawn a particle, destroy it after certain amount of time
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 spawnPosition = new Vector3(mousePosition.x, mousePosition.y, 40f);
+        Quaternion rotation = new Quaternion(1f, 1f, 1f, -1f);
+        ParticleSystem ps = Instantiate(heartsParticles, spawnPosition, rotation) as ParticleSystem;
+        ps.Play();
+        Destroy(ps.gameObject, 1.5f);
+    }
 }
+
