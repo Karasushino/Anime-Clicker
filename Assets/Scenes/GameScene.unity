@@ -732,7 +732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &333880140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -755,7 +755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 21}
+  m_AnchoredPosition: {x: 13.125, y: 23}
   m_SizeDelta: {x: 440.10007, y: 445.40002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &333880141
@@ -832,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 13.125, y: -94.70001}
+  m_AnchoredPosition: {x: 2, y: -99}
   m_SizeDelta: {x: 571.45, y: 154.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &434835730
@@ -1064,7 +1064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470829821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21, y: -2.09, z: 98}
+  m_LocalPosition: {x: 0.06, y: -1.85, z: 98}
   m_LocalScale: {x: 0.7314286, y: 0.70069927, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1082,7 +1082,7 @@ GameObject:
   - component: {fileID: 478153552}
   - component: {fileID: 478153551}
   m_Layer: 10
-  m_Name: Particle System
+  m_Name: Tap Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5984,11 +5984,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ef838475b21ae4595aa0e418265d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Significant_Figure: 3
+  Significant_Figure: 2
   currentClicks: {fileID: 19719945}
   HeadpatScore: {fileID: 1318735491}
   WaifuScore: {fileID: 2018524981}
-  heartsParticles: {fileID: 478153552}
   currentSprite: {fileID: 470829822}
 --- !u!4 &510930774
 Transform:
@@ -6016,9 +6015,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae41fa33031eef47a8dcc65a968da14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  significant_figure: 2
+  AutoClick_level: 1
+  autoClick_timer: 1
   headPat_cost: 32
-  autoClicker_cost: 60
-  headPat_cost_multiplier: 50
+  autoClicker_cost: 16
+  headPat_cost_multiplier: 1.2
   autoClicker_cost_multiplier: 68
   UpgradeTitle: {fileID: 1049232907}
   UpgradeDescription: {fileID: 594637979}
@@ -6153,7 +6155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.05532837}
+  m_AnchoredPosition: {x: -1.1000061, y: -0.0000076293945}
   m_SizeDelta: {x: 2.2000122, y: -4.490616}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &554819368
@@ -8068,8 +8070,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 510930775}
-        m_MethodName: displayHeadpatUpgrade
+      - m_Target: {fileID: 510930776}
+        m_MethodName: SelectAutoClicker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9973,7 +9975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 87, y: -317}
+  m_AnchoredPosition: {x: 13.234, y: -253}
   m_SizeDelta: {x: 3.579956, y: 0.8200073}
   m_Pivot: {x: 0.53051364, y: 0.49999994}
 --- !u!114 &2041204652
