@@ -25,8 +25,13 @@ public class Upgrades : MonoBehaviour
     private const float headPat_level_exponential = 4f;
     [SerializeField]
     [Tooltip("The amount of time that needs to pass before auto clicking in s")]
-    private  float autoClick_timer = 1.0f;
-    private  float startTimer = 0f;
+    private float autoClick_timer = 1.0f;
+    private float startTimer = 0f;
+    [SerializeField]
+    [Tooltip("The % that the timer will be reduced by")]
+    [Range(0f, 1f)]
+    private float decreasePercentage = 0.1f;
+
 
 
     //Costs to upgrade to next level
@@ -79,11 +84,24 @@ public class Upgrades : MonoBehaviour
         //Passive Auto Click (Have to implement it based on level, that will go into upgrade function
         //For now this adds the points after x time elapsed. Upgrade just lowers autoclick timer)
         addAutoClick();
-        
+
 
     }
     //GAME LOGIC FUNCTIONS
-    public void upgradeHeadpat()
+
+    public void upgradeSkills()
+    {
+        switch (UpgradeSelectedState.SelectedUpgrade)
+        {
+            case Upgrade.HEADPAT:
+                upgradeHeadpat();
+                break;
+            case Upgrade.AUTOCLICKER:
+                upgradeAutoClicker();
+                break;
+        }
+    }
+    private void upgradeHeadpat()
     {
         //If enough waifu points upgrade and remove cost from total waifu points
         if (ClickerCounter.waifuPoints >= headPat_cost)
@@ -106,6 +124,41 @@ public class Upgrades : MonoBehaviour
 
             //Reformat Cost Display
             DisplayFormatedValueText((int)headPat_cost, Cost, significant_figure);
+
+        }
+    }
+
+
+    private void upgradeAutoClicker()
+    {
+        //If enough waifu points upgrade and remove cost from total waifu points
+        if (ClickerCounter.waifuPoints >= autoClicker_cost)
+        {
+            //Remove waifu points
+            ClickerCounter.waifuPoints -= autoClicker_cost;
+            //Increase Level
+            AutoClick_level++;
+
+            //Now increase cost for the next time
+            //Add x Percent to the cost of the upgrade
+            float addToCost = autoClicker_cost * autoClicker_cost_multiplier;
+            Debug.Log("Clicker multiplier: " + autoClicker_cost_multiplier);
+            Debug.Log("Cost To Add to Autoclicker: " + addToCost);
+            Debug.Log("autoclicker cost Before adding: " + autoClicker_cost);
+            autoClicker_cost += Mathf.Round(addToCost);
+
+            //Reduce time taken to get autoclick
+            float timeToReduce = autoClick_timer * decreasePercentage;
+            autoClick_timer -= timeToReduce;
+
+            Debug.Log("Time Reduced: " + timeToReduce);
+            Debug.Log("Timer Value: " + autoClick_timer);
+
+            //Update new values
+            DisplayFormatedValueText(AutoClick_level, Level, significant_figure);
+
+            //Reformat Cost Display
+            DisplayFormatedValueText((int)autoClicker_cost, Cost, significant_figure);
 
         }
     }
@@ -160,8 +213,8 @@ public class Upgrades : MonoBehaviour
     {
         UpgradeTitle.text = "Auto Clicker";
         UpgradeDescription.text = "Free Clicks = MORE waifu points";
-        Level.text = headPat_level.ToString();
-        Cost.text = headPat_cost.ToString();
+        Level.text = AutoClick_level.ToString();
+        Cost.text = autoClicker_cost.ToString();
     }
 
     

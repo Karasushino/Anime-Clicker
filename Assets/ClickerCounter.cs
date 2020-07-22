@@ -24,7 +24,7 @@ public class ClickerCounter : MonoBehaviour
     //Number of Current Clicks left to fill bar
     public static int numberOfClicks = barOffset;
     //Times the bar has been filled x Upgrade level
-    public static float waifuPoints = 0;
+    public static float waifuPoints = 10000;
 
     //All UI TEXT AND VALUES 
     //The number that the score will be rounded to when it reaches a Million
