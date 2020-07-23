@@ -6662,6 +6662,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 510930777}
+        m_MethodName: setClickingDetectionOFF
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &489376665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6710,6 +6721,7 @@ GameObject:
   - component: {fileID: 510930775}
   - component: {fileID: 510930773}
   - component: {fileID: 510930776}
+  - component: {fileID: 510930777}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6763,11 +6775,11 @@ MonoBehaviour:
   significant_figure: 2
   AutoClick_level: 1
   autoClick_timer: 4
-  decreasePercentage: 0.025
+  decreasePercentage: 0.035
   headPat_cost: 32
   autoClicker_cost: 16
   headPat_cost_multiplier: 1.2
-  autoClicker_cost_multiplier: 1.05
+  autoClicker_cost_multiplier: 0.5
   UpgradeTitle: {fileID: 1049232907}
   UpgradeDescription: {fileID: 594637979}
   Level: {fileID: 1728954326}
@@ -6782,6 +6794,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0377ade575217de4ab94290a6b71329c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &510930777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510930772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a768c154b83524bb67bccbbbe98229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -8560,6 +8584,17 @@ MonoBehaviour:
       - m_Target: {fileID: 333880139}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 510930777}
+        m_MethodName: setClickingDetectionON
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

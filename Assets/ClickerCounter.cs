@@ -57,7 +57,7 @@ public class ClickerCounter : MonoBehaviour
     void Update()
     {
        //Only do if we are not in waifu select
-        if(!toggleWaifuSelect.isActive)
+        if(toggleClickDetection.isClickingDetection)
         {
             //Check for Mouse Click
 

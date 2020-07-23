@@ -40,6 +40,9 @@ public class toggleWaifuSelect : MonoBehaviour
                 a.SetActive(true);
             }
             isActive = true;
+
+            //Reactivate Click Detection
+            toggleClickDetection.isClickingDetection = true;
         }
         else
         {
@@ -57,6 +60,9 @@ public class toggleWaifuSelect : MonoBehaviour
             {
                 a.SetActive(false);
                 isActive = false;
+
+                //Deactivate Click Detection
+                toggleClickDetection.isClickingDetection = false;
             }
         }
         else
