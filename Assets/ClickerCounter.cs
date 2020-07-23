@@ -24,7 +24,7 @@ public class ClickerCounter : MonoBehaviour
     //Number of Current Clicks left to fill bar
     public static int numberOfClicks = barOffset;
     //Times the bar has been filled x Upgrade level
-    public static float waifuPoints = 10000;
+    public static float waifuPoints = 0;
 
     //All UI TEXT AND VALUES 
     //The number that the score will be rounded to when it reaches a Million
@@ -56,53 +56,56 @@ public class ClickerCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        
-        
-        //Check for Mouse Click
-
-        if (Input.GetMouseButtonDown(0))
+       //Only do if we are not in waifu select
+        if(!toggleWaifuSelect.isActive)
         {
-            //Spawns Particle on mouse position // Also destroys it
-            SpawnParticle();
+            //Check for Mouse Click
 
-            //Flip Sprite
-            if (!isFlipped)
+            if (Input.GetMouseButtonDown(0))
             {
-                currentSprite.flipX = true;
-                isFlipped = true;
-            }
+                //Spawns Particle on mouse position // Also destroys it
+                SpawnParticle();
 
-            else
+                //Flip Sprite
+                if (!isFlipped)
+                {
+                    currentSprite.flipX = true;
+                    isFlipped = true;
+                }
+
+                else
+                {
+                    currentSprite.flipX = false;
+                    isFlipped = false;
+                }
+
+
+                //Increase clicks
+                numberOfClicks++;
+                totalClicks++;
+                //If over bar then reset it
+
+
+            }
+            //If current clicks filled bar reset bar to empty and add point
+            if (numberOfClicks > 12)
             {
-                currentSprite.flipX = false;
-                isFlipped = false;
+                numberOfClicks = barOffset;
+                //Checks for Data on Points multipliers and adds the points
+                Upgrades.addWaifuPoints();
             }
+            //UI UPDATES
+            //Displays number of current clicks left to fill bar to get waifu point
+            currentClicks.text = (numberOfClicks - barOffset) + "/" + (maxClicks - barOffset);
 
-
-            //Increase clicks
-            numberOfClicks++;
-            totalClicks++;
-            //If over bar then reset it
-           
-
+            //Updates Score UI with formated value to selected significant figure
+            Upgrades.DisplayFormatedValueText(waifuPoints, WaifuScore, Significant_Figure);
+            Upgrades.DisplayFormatedValueText(totalClicks, HeadpatScore, Significant_Figure);
+            // UpdateScoreText();
         }
-        //If current clicks filled bar reset bar to empty and add point
-        if (numberOfClicks > 12)
-        {
-            numberOfClicks = barOffset;
-            //Checks for Data on Points multipliers and adds the points
-            Upgrades.addWaifuPoints();
-        }
-        //UI UPDATES
-        //Displays number of current clicks left to fill bar to get waifu point
-        currentClicks.text = (numberOfClicks - barOffset) + "/" + (maxClicks - barOffset);
-
-        //Updates Score UI with formated value to selected significant figure
-        Upgrades.DisplayFormatedValueText(waifuPoints, WaifuScore, Significant_Figure);
-        Upgrades.DisplayFormatedValueText(totalClicks, HeadpatScore, Significant_Figure);
-        // UpdateScoreText();
     }
+        
+       
 
     public static void SpawnParticle()
     {

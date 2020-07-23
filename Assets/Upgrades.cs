@@ -83,6 +83,7 @@ public class Upgrades : MonoBehaviour
 
         //Passive Auto Click (Have to implement it based on level, that will go into upgrade function
         //For now this adds the points after x time elapsed. Upgrade just lowers autoclick timer)
+        if(!toggleWaifuSelect.isActive)
         addAutoClick();
 
 
@@ -142,17 +143,17 @@ public class Upgrades : MonoBehaviour
             //Now increase cost for the next time
             //Add x Percent to the cost of the upgrade
             float addToCost = autoClicker_cost * autoClicker_cost_multiplier;
-            Debug.Log("Clicker multiplier: " + autoClicker_cost_multiplier);
-            Debug.Log("Cost To Add to Autoclicker: " + addToCost);
-            Debug.Log("autoclicker cost Before adding: " + autoClicker_cost);
+           // Debug.Log("Clicker multiplier: " + autoClicker_cost_multiplier);
+           // Debug.Log("Cost To Add to Autoclicker: " + addToCost);
+           // Debug.Log("autoclicker cost Before adding: " + autoClicker_cost);
             autoClicker_cost += Mathf.Round(addToCost);
 
             //Reduce time taken to get autoclick
             float timeToReduce = autoClick_timer * decreasePercentage;
             autoClick_timer -= timeToReduce;
 
-            Debug.Log("Time Reduced: " + timeToReduce);
-            Debug.Log("Timer Value: " + autoClick_timer);
+            //Debug.Log("Time Reduced: " + timeToReduce);
+            //Debug.Log("Timer Value: " + autoClick_timer);
 
             //Update new values
             DisplayFormatedValueText(AutoClick_level, Level, significant_figure);
@@ -174,7 +175,7 @@ public class Upgrades : MonoBehaviour
 
             //Decrese time elapsed between frames to countdown every frame
             startTimer += Time.deltaTime;
-            Debug.Log("Current Timer: " + startTimer);
+           // Debug.Log("Current Timer: " + startTimer);
         }
         else
         {
@@ -184,7 +185,7 @@ public class Upgrades : MonoBehaviour
             ClickerCounter.totalClicks++;
             ClickerCounter.SpawnParticle();
             //Reset timer variable to save it next frame
-            Debug.Log("Timer Reset to: " + autoClick_timer);
+           // Debug.Log("Timer Reset to: " + autoClick_timer);
             
         }
     }
@@ -211,10 +212,11 @@ public class Upgrades : MonoBehaviour
     }
     public void displayAutoClickerUpgrade()
     {
-        UpgradeTitle.text = "Auto Clicker";
-        UpgradeDescription.text = "Free Clicks = MORE waifu points";
+        UpgradeTitle.text = "Auto Headpats";
+        UpgradeDescription.text = "Free headpats = MORE waifu points";
         Level.text = AutoClick_level.ToString();
-        Cost.text = autoClicker_cost.ToString();
+        DisplayFormatedValueText(autoClicker_cost, Cost, significant_figure);
+        
     }
 
     
@@ -231,14 +233,24 @@ public class Upgrades : MonoBehaviour
     public static void DisplayFormatedValueText(float score, TextMeshProUGUI DisplayText, int digits)
     {
 
-        
+        float Million = 1000000f;
+        float Billion = 1000000000f;
 
         //If over a Million change to M
 
-        if (score >= 1000000)
+
+        if (score >= Billion)
         {
 
-            float PointsDisplay = ((float)score / 1000000f);
+            float PointsDisplay = ((float)score / Billion);
+            PointsDisplay = Round(PointsDisplay, digits);
+
+            DisplayText.text = PointsDisplay.ToString() + " B";
+        }
+        else if (score >= Million)
+        {
+
+            float PointsDisplay = ((float)score / Million);
             PointsDisplay = Round(PointsDisplay, digits);
 
             DisplayText.text = PointsDisplay.ToString() + " M";
