@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 99, y: -79}
-  m_SizeDelta: {x: 87.7, y: 83.5}
+  m_AnchoredPosition: {x: 98.99997, y: -79}
+  m_SizeDelta: {x: 87.70001, y: 83.5}
   m_Pivot: {x: 0.49999994, y: 0.5000003}
 --- !u!114 &12969006
 MonoBehaviour:
@@ -850,11 +850,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c400d54fd4614db7ba1c89efe2e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Waifu_cost_array: 80841e00c08c6c05
+  Waifu_cost_array: 80841e00c0c62d00
   Waifu_spriteRenderer: {fileID: 142661261}
+  Waifu_INGAME: {fileID: 470829822}
   current_waifu: 0
+  selected_waifu: 0
   text_unlock_for_tag: {fileID: 2057502442}
   text_unlock_cost: {fileID: 1636600193}
+  upgradeButton_text: {fileID: 1292330327}
   singificant_figures: 2
 --- !u!212 &142661261
 SpriteRenderer:
@@ -893,7 +896,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 93ec7fb572ea5fc46b67b34c04b4799d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7165,7 +7168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.07231903, y: -0.5090027}
+  m_AnchoredPosition: {x: -0.07232666, y: -0.5090027}
   m_SizeDelta: {x: 318.35, y: 146.29321}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &586173391
@@ -7548,7 +7551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.6821823, y: -0.33135986}
+  m_AnchoredPosition: {x: 1.68219, y: -0.33135986}
   m_SizeDelta: {x: 26.900085, y: 32.693176}
   m_Pivot: {x: 0.49999988, y: 0.4999999}
 --- !u!114 &619898334
@@ -7788,10 +7791,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 640, y: 960}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -7817,7 +7820,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &778279377
 RectTransform:
@@ -7950,10 +7953,10 @@ RectTransform:
   m_Father: {fileID: 778279377}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.74369, y: 186.18913}
-  m_SizeDelta: {x: 5.143, y: 0.811}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -8.743683, y: -293.81085}
+  m_SizeDelta: {x: 5.1430054, y: 0.81100464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &904343511
 GameObject:
@@ -9874,7 +9877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.2339935, y: -0.027053833}
+  m_AnchoredPosition: {x: 2.2339783, y: -0.027053833}
   m_SizeDelta: {x: 13.557068, y: 20.58905}
   m_Pivot: {x: 0.49999988, y: 0.50000036}
 --- !u!114 &1508485426
@@ -10258,7 +10261,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.75730896, y: -0.12506104}
+  m_AnchoredPosition: {x: 0.7572937, y: -0.12506104}
   m_SizeDelta: {x: 136.15704, y: 76.789}
   m_Pivot: {x: 0.5, y: 0.49999923}
 --- !u!114 &1636600193
@@ -11500,8 +11503,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 510930775}
-        m_MethodName: upgradeSkills
+      - m_Target: {fileID: 142661260}
+        m_MethodName: waifuMenuUnlockButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12628,7 +12631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.5958478, y: -0.0025482178}
+  m_AnchoredPosition: {x: -1.5958557, y: -0.0025482178}
   m_SizeDelta: {x: 142.35706, y: 43.889038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057502442

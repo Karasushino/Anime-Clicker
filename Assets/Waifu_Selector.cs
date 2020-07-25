@@ -16,21 +16,34 @@ public class Waifu_Selector : MonoBehaviour
     [Tooltip("The Sprite to Display")]
     private SpriteRenderer Waifu_spriteRenderer;
 
+    [SerializeField]
+    [Tooltip("The Sprite to Display")]
+    private SpriteRenderer Waifu_INGAME;
+
 
     //Sets the number of waifus that there is in the game
     //IMPORTANT TO CHANGE THIS WHENEVER A WAIFU IS ADDED
-    //CAN'T THINK OF ANOTHER SYSTEM RIGHT NOW
+    //CAN'T THINK OF ANOTHER SYSTEM RIGHT NOW (Without editor drag and drop, and I want to load from resources)
     const int number_of_waifus = 2;
 
     //Variable that will keep track of current selected waifu
-    [SerializeField] private int current_waifu = 0;
+    [SerializeField]
+    private int current_waifu = 0;
+    //Variable that stores selected waifu
+    [SerializeField]
+    private int selected_waifu = 0;
+
 
     //Get Unlock for Text and Unlock cost Text
     public TextMeshProUGUI text_unlock_for_tag;
     public TextMeshProUGUI text_unlock_cost;
+
+    //Text in Button for the Waifu Select Menu (Upgrade button)
+    [SerializeField] private TextMeshProUGUI upgradeButton_text;
+
     //Set number of significant figures default to 2
     public int singificant_figures = 2;
-    
+
 
 
     //Struct containing relevent waifu data (Loading to a list all this data 
@@ -44,6 +57,7 @@ public class Waifu_Selector : MonoBehaviour
 
 
     private Waifu_data[] Waifu_list = new Waifu_data[2];
+
 
     // Start is called before the first frame update
     void Start()
@@ -70,20 +84,24 @@ public class Waifu_Selector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug stuff to see if it works
-        //Debug.Log("Cost of Waifu: " + Waifu_list[1].cost);
+
 
         //Gets current Waifu selected
         Waifu_data currentWaifu = Waifu_list[current_waifu];
+        Waifu_data selectedWaifu = Waifu_list[selected_waifu];
 
-        //Display cost of selected waifu in Waifu Menu
-        Upgrades.DisplayFormatedValueText(currentWaifu.cost,text_unlock_cost,singificant_figures);
+        //UI Updates 
+            changeButtonText();
+            //Display cost of selected waifu in Waifu Menu
+            Upgrades.DisplayFormatedValueText(currentWaifu.cost, text_unlock_cost, singificant_figures);
 
 
 
-        //Changes to selected Waifu sprite from the Waifu List
-        Waifu_spriteRenderer.sprite = currentWaifu.sprite;
-
+        //Render Sprite
+            //Changes current Waifu sprite from the Waifu List
+            Waifu_spriteRenderer.sprite = currentWaifu.sprite;
+            //Changes selected waifu in the game
+            Waifu_INGAME.sprite = selectedWaifu.sprite;
 
     }
 
@@ -112,4 +130,57 @@ public class Waifu_Selector : MonoBehaviour
             current_waifu = number_of_waifus - 1;
         }
     }
+
+
+
+
+    public void waifuMenuUnlockButton()
+    {
+
+        //Type less (It's a copy)
+        Waifu_data waifu = Waifu_list[current_waifu];
+        //Just unlocks it and allows to see Select text
+        //This changes behavour from unlock to Select (not implemented)
+        //If it isn't unlocked and the number of points is bigger or equal to the cost
+        if (!waifu.isUnlocked)
+        {
+            if (ClickerCounter.waifuPoints >= waifu.cost)
+            {
+                //Take Points away
+                ClickerCounter.waifuPoints -= waifu.cost;
+
+                //Change boolean to unlocked (from the data in the list, not the copy)
+                Waifu_list[current_waifu].isUnlocked = true;
+            }
+
+        }
+        //else it means its unlocked and should select it
+        else
+        {
+            //Save index of current waifu as selected
+            selected_waifu = current_waifu;
+
+        }
+
+
+
+    }
+
+    //Intended to run every frame 
+    private void changeButtonText()
+    {
+        //Type less
+        Waifu_data waifu = Waifu_list[current_waifu];
+
+        if (!waifu.isUnlocked)
+        {
+            upgradeButton_text.text = "Unlock";
+        }
+        else
+        {
+            upgradeButton_text.text = "Select";
+        }
+
+    }
+    
 }

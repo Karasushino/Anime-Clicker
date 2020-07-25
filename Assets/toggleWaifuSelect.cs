@@ -41,12 +41,12 @@ public class toggleWaifuSelect : MonoBehaviour
             }
             isActive = true;
 
-            //Reactivate Click Detection
-            toggleClickDetection.isClickingDetection = true;
+            //Deactivate Click Detection
+            toggleClickDetection.isClickingDetection = false;
         }
         else
         {
-            Debug.Log("Somehow tried to toggle Waifu UI on when it was already ON");
+            Debug.Log("Somehow tried to toggle Waifu UI off when it was already OFF");
         }
     }
 
@@ -61,8 +61,8 @@ public class toggleWaifuSelect : MonoBehaviour
                 a.SetActive(false);
                 isActive = false;
 
-                //Deactivate Click Detection
-                toggleClickDetection.isClickingDetection = false;
+                //Reactivate Click Detection
+                toggleClickDetection.isClickingDetection = true;
             }
         }
         else
