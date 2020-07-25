@@ -56,8 +56,8 @@ public class ClickerCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       //Only do if we are not in waifu select
-        if(toggleClickDetection.isClickingDetection)
+        //Only do if we are not in waifu select
+        if (toggleClickDetection.isClickingDetection)
         {
             //Check for Mouse Click
 
@@ -99,10 +99,12 @@ public class ClickerCounter : MonoBehaviour
             currentClicks.text = (numberOfClicks - barOffset) + "/" + (maxClicks - barOffset);
 
             //Updates Score UI with formated value to selected significant figure
-            Upgrades.DisplayFormatedValueText(waifuPoints, WaifuScore, Significant_Figure);
             Upgrades.DisplayFormatedValueText(totalClicks, HeadpatScore, Significant_Figure);
-            // UpdateScoreText();
+           
         }
+        //Updates Score UI with formated value to selected significant figure
+        Upgrades.DisplayFormatedValueText(waifuPoints, WaifuScore, Significant_Figure);
+        
     }
         
        
