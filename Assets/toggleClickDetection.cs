@@ -15,6 +15,11 @@ public class toggleClickDetection : MonoBehaviour
     //Yes by default
     public static bool isClickingDetection = true;
 
+    private void Start()
+    {
+        //Prevent screen from sleeping
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
     public void setClickingDetectionOFF()
     {
         isClickingDetection = false;

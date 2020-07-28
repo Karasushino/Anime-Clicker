@@ -26,6 +26,11 @@ public class ClickerCounter : MonoBehaviour
     //Times the bar has been filled x Upgrade level
     public static float waifuPoints = 0;
 
+    [SerializeField]
+    private AudioSource headPatSFX;
+    [SerializeField]
+    private AudioSource FullBarSFX;
+
     //All UI TEXT AND VALUES 
     //The number that the score will be rounded to when it reaches a Million
     [SerializeField]
@@ -63,6 +68,10 @@ public class ClickerCounter : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                headPatSFX.Stop();
+                headPatSFX.Play();
+
+
                 //Spawns Particle on mouse position // Also destroys it
                 SpawnParticle();
 
@@ -83,28 +92,33 @@ public class ClickerCounter : MonoBehaviour
                 //Increase clicks
                 numberOfClicks++;
                 totalClicks++;
-                //If over bar then reset it
+
 
 
             }
-            //If current clicks filled bar reset bar to empty and add point
-            if (numberOfClicks > 12)
-            {
-                numberOfClicks = barOffset;
-                //Checks for Data on Points multipliers and adds the points
-                Upgrades.addWaifuPoints();
-            }
-            //UI UPDATES
-            //Displays number of current clicks left to fill bar to get waifu point
-            currentClicks.text = (numberOfClicks - barOffset) + "/" + (maxClicks - barOffset);
 
-            //Updates Score UI with formated value to selected significant figure
-            Upgrades.DisplayFormatedValueText(totalClicks, HeadpatScore, Significant_Figure);
-           
         }
+
+        //UI UPDATES
+        //Displays number of current clicks left to fill bar to get waifu point
+        currentClicks.text = (numberOfClicks - barOffset) + "/" + (maxClicks - barOffset);
+
+        //Updates Score UI with formated value to selected significant figure
+        Upgrades.DisplayFormatedValueText(totalClicks, HeadpatScore, Significant_Figure);
+
+
         //Updates Score UI with formated value to selected significant figure
         Upgrades.DisplayFormatedValueText(waifuPoints, WaifuScore, Significant_Figure);
-        
+
+        //If current clicks filled bar reset bar to empty and add point
+        //If over bar then reset it
+        if (numberOfClicks > 12)
+        {
+            numberOfClicks = barOffset;
+            //Checks for Data on Points multipliers and adds the points
+            Upgrades.addWaifuPoints();
+            FullBarSFX.Play();
+        }
     }
         
        

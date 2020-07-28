@@ -24,7 +24,7 @@ public class Waifu_Selector : MonoBehaviour
     //Sets the number of waifus that there is in the game
     //IMPORTANT TO CHANGE THIS WHENEVER A WAIFU IS ADDED
     //CAN'T THINK OF ANOTHER SYSTEM RIGHT NOW (Without editor drag and drop, and I want to load from resources)
-    const int number_of_waifus = 2;
+    const int number_of_waifus = 3;
 
     //Variable that will keep track of current selected waifu
     [SerializeField]
@@ -56,7 +56,7 @@ public class Waifu_Selector : MonoBehaviour
     }
 
 
-    private Waifu_data[] Waifu_list = new Waifu_data[2];
+    private Waifu_data[] Waifu_list = new Waifu_data[number_of_waifus];
 
 
     // Start is called before the first frame update
@@ -67,7 +67,7 @@ public class Waifu_Selector : MonoBehaviour
 
         Waifu_data temporal_data;
         //Uses cost array lenght to loop through all waifus
-        for (int i = 0; i < Waifu_cost_array.Length; i++)
+        for (int i = 0; i < number_of_waifus; i++)
         {
             //Load Texture
             temporal_data.sprite = Resources.Load<Sprite>("Waifus/Waifu " + i);
@@ -76,15 +76,17 @@ public class Waifu_Selector : MonoBehaviour
             //Set default to non unlocked
             temporal_data.isUnlocked = false;
             Waifu_list[i] = temporal_data;
+            
         }
 
+        Waifu_list[0].isUnlocked = true;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
+      
 
         //Gets current Waifu selected
         Waifu_data currentWaifu = Waifu_list[current_waifu];
@@ -175,10 +177,13 @@ public class Waifu_Selector : MonoBehaviour
         if (!waifu.isUnlocked)
         {
             upgradeButton_text.text = "Unlock";
+            
         }
         else
         {
             upgradeButton_text.text = "Select";
+            if (selected_waifu == current_waifu)
+                upgradeButton_text.text = "Selected";
         }
 
     }
