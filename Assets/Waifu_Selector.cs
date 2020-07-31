@@ -24,7 +24,7 @@ public class Waifu_Selector : MonoBehaviour
     //Sets the number of waifus that there is in the game
     //IMPORTANT TO CHANGE THIS WHENEVER A WAIFU IS ADDED
     //CAN'T THINK OF ANOTHER SYSTEM RIGHT NOW (Without editor drag and drop, and I want to load from resources)
-    const int number_of_waifus = 3;
+    const int number_of_waifus = 8;
 
     //Variable that will keep track of current selected waifu
     [SerializeField]
