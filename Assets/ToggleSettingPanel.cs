@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static toggleClickDetection;
 
 public class ToggleSettingPanel : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class ToggleSettingPanel : MonoBehaviour
         {
             SettingsPanel.SetActive(true);
             isDisplayed = true;
+            toggleClickDetection.isClickingDetection = false;
         }
         else
         {
             SettingsPanel.SetActive(false);
             isDisplayed = false;
+            toggleClickDetection.isClickingDetection = true;
         }
     }
 
