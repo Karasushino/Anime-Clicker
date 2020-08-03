@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 142661260}
+      - m_Target: {fileID: 510930779}
         m_MethodName: moveToPreviousWaifu
         m_Mode: 1
         m_Arguments:
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 142661260}
+      - m_Target: {fileID: 510930779}
         m_MethodName: moveToNextWaifu
         m_Mode: 1
         m_Arguments:
@@ -851,7 +851,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 140873737}
-  - component: {fileID: 140873738}
   m_Layer: 5
   m_Name: Setting Panel Object
   m_TagString: Untagged
@@ -884,30 +883,6 @@ RectTransform:
   m_AnchoredPosition: {x: -116.19995, y: -196.65002}
   m_SizeDelta: {x: 209.6, y: 203.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &140873738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140873736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f19391b2037994e8fce25e4252ced1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMutedSFX: 0
-  isMutedMusic: 0
-  muteBar:
-  - {fileID: 1837385576}
-  - {fileID: 2078899699}
-  MusicSources:
-  - {fileID: 880152784}
-  - {fileID: 1714195567}
-  SFXSources:
-  - {fileID: 812158026}
-  - {fileID: 1062010513}
-  - {fileID: 1136817892}
 --- !u!1 &142661259
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +893,6 @@ GameObject:
   m_Component:
   - component: {fileID: 142661262}
   - component: {fileID: 142661261}
-  - component: {fileID: 142661260}
   m_Layer: 0
   m_Name: Waifu Menu Character Sprite
   m_TagString: Untagged
@@ -926,27 +900,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &142661260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142661259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e6c400d54fd4614db7ba1c89efe2e9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Waifu_cost_array: 00000000c0c62d00405dc60040787d01c029cd02804a5d05000e2707802b530b
-  Waifu_spriteRenderer: {fileID: 142661261}
-  Waifu_INGAME: {fileID: 470829822}
-  current_waifu: 0
-  selected_waifu: 0
-  text_unlock_for_tag: {fileID: 2057502442}
-  text_unlock_cost: {fileID: 1636600193}
-  upgradeButton_text: {fileID: 1292330327}
-  singificant_figures: 2
 --- !u!212 &142661261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7010,6 +6963,9 @@ GameObject:
   - component: {fileID: 510930776}
   - component: {fileID: 510930777}
   - component: {fileID: 510930778}
+  - component: {fileID: 510930779}
+  - component: {fileID: 510930781}
+  - component: {fileID: 510930780}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7113,6 +7069,65 @@ MonoBehaviour:
   MainTheme: {fileID: 880152784}
   MenuClick: {fileID: 1062010513}
   WaifuTheme: {fileID: 1714195567}
+--- !u!114 &510930779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510930772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6c400d54fd4614db7ba1c89efe2e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Waifu_cost_array: 00000000c0c62d00405dc60040787d01c029cd02804a5d05000e2707802b530b
+  Waifu_spriteRenderer: {fileID: 142661261}
+  Waifu_INGAME: {fileID: 470829822}
+  current_waifu: 0
+  selected_waifu: 0
+  text_unlock_for_tag: {fileID: 2057502442}
+  text_unlock_cost: {fileID: 1636600193}
+  upgradeButton_text: {fileID: 1292330327}
+  singificant_figures: 2
+--- !u!114 &510930780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510930772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f19391b2037994e8fce25e4252ced1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMutedSFX: 0
+  isMutedMusic: 0
+  muteBar:
+  - {fileID: 1837385576}
+  - {fileID: 2078899699}
+  MusicSources:
+  - {fileID: 880152784}
+  - {fileID: 1714195567}
+  SFXSources:
+  - {fileID: 812158026}
+  - {fileID: 1062010513}
+  - {fileID: 1136817892}
+--- !u!114 &510930781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510930772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13945e7653aec104782e9d2cbaa1aec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SettingsPanel: {fileID: 140873736}
+  isDisplayed: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -8497,7 +8512,6 @@ GameObject:
   - component: {fileID: 825300440}
   - component: {fileID: 825300439}
   - component: {fileID: 825300438}
-  - component: {fileID: 825300441}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -8567,7 +8581,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 825300441}
+      - m_Target: {fileID: 510930781}
         m_MethodName: toggleSettingPanel
         m_Mode: 1
         m_Arguments:
@@ -8614,20 +8628,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825300436}
   m_CullTransparentMesh: 0
---- !u!114 &825300441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 825300436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13945e7653aec104782e9d2cbaa1aec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SettingsPanel: {fileID: 140873736}
-  isDisplayed: 0
 --- !u!1 &880152782
 GameObject:
   m_ObjectHideFlags: 0
@@ -12402,7 +12402,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 140873738}
+      - m_Target: {fileID: 510930780}
         m_MethodName: toggleMuteMusic
         m_Mode: 1
         m_Arguments:
@@ -13659,7 +13659,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 140873738}
+      - m_Target: {fileID: 510930780}
         m_MethodName: toggleMuteSFX
         m_Mode: 1
         m_Arguments:
@@ -13789,7 +13789,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 142661260}
+      - m_Target: {fileID: 510930779}
         m_MethodName: waifuMenuUnlockButton
         m_Mode: 1
         m_Arguments:
