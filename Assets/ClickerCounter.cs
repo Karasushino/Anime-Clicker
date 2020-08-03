@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using BayatGames.SaveGameFree;
+using UnityEngine.SceneManagement;
 
 
 public class ClickerCounter : MonoBehaviour
 {
+
 
 
     //All Click Counters and Score VARIABLES
@@ -24,7 +26,7 @@ public class ClickerCounter : MonoBehaviour
     //Number of Current Clicks left to fill bar
     public static int numberOfClicks = barOffset;
     //Times the bar has been filled x Upgrade level
-    public static float waifuPoints = 0;
+    public static float waifuPoints = 1000000000000;
 
     [SerializeField]
     private AudioSource headPatSFX;
@@ -54,6 +56,8 @@ public class ClickerCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        Load();
         tapParticlesObject = GameObject.Find("Tap Particle");
         tapParticle = tapParticlesObject.GetComponent<ParticleSystem>();
     }
@@ -119,9 +123,11 @@ public class ClickerCounter : MonoBehaviour
             Upgrades.addWaifuPoints();
             FullBarSFX.Play();
         }
+
+        Save();
     }
-        
-       
+
+
 
     public static void SpawnParticle()
     {
@@ -133,5 +139,25 @@ public class ClickerCounter : MonoBehaviour
         ps.Play();
         Destroy(ps.gameObject, 1.5f);
     }
+
+
+
+    void Save()
+    {
+        SaveGame.Save<int>("Total Clicks", totalClicks);
+        
+        SaveGame.Save<int>("Number Clicks", numberOfClicks);
+        SaveGame.Save<float>("Waifu Points", waifuPoints);
+    }
+
+    private void Load()
+    {
+        totalClicks = SaveGame.Load<int>("Total Clicks");
+       
+        numberOfClicks = SaveGame.Load<int>("Number Clicks");
+        waifuPoints = SaveGame.Load<float>("Waifu Points");
+        
+    }
 }
+
    

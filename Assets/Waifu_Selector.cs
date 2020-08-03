@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using BayatGames.SaveGameFree;
+
+
 public class Waifu_Selector : MonoBehaviour
 {
 
@@ -55,56 +58,67 @@ public class Waifu_Selector : MonoBehaviour
         public bool isUnlocked;
     }
 
+    //To save if it was unlocked
+    static bool[] isUnlockedSave = new bool[number_of_waifus];
+    //To save selected waifu
+    static int SelectedWaifuSave;
 
-    private Waifu_data[] Waifu_list = new Waifu_data[number_of_waifus];
+
+    Waifu_data[] Waifu_list = new Waifu_data[number_of_waifus];
+
 
 
     // Start is called before the first frame update
-    void Start()
+   
+    void Awake()
     {
         //LOADS WAIFU DATA AND ADDS TO A LIST WHERE ALL WAIFU DATA IS STORED
         //Temporal Variables
+        
 
-        Waifu_data temporal_data;
-        //Uses cost array lenght to loop through all waifus
-        for (int i = 0; i < number_of_waifus; i++)
-        {
-            //Load Texture
-            temporal_data.sprite = Resources.Load<Sprite>("Waifus/Waifu " + i);
-            //Set Cost
-            temporal_data.cost = Waifu_cost_array[i];
-            //Set default to non unlocked
-            temporal_data.isUnlocked = false;
-            Waifu_list[i] = temporal_data;
-            
-        }
+        //Waifu_data temporal_data;
+        ////Uses cost array lenght to loop through all waifus
+        //for (int i = 0; i < number_of_waifus; i++)
+        //{
+        //    //Load Texture
+        //    temporal_data.sprite = Resources.Load<Sprite>("Waifus/Waifu " + i);
+        //    //Set Cost
+        //    temporal_data.cost = Waifu_cost_array[i];
+        //    //Set default to non unlocked
+        //    temporal_data.isUnlocked = false;
+        //    Waifu_list[i] = temporal_data;
 
-        Waifu_list[0].isUnlocked = true;
+        //}
+
+        //Waifu_list[0].isUnlocked = true;
+
+        Load();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-      
+        Save();
 
         //Gets current Waifu selected
         Waifu_data currentWaifu = Waifu_list[current_waifu];
         Waifu_data selectedWaifu = Waifu_list[selected_waifu];
 
         //UI Updates 
-            changeButtonText();
-            //Display cost of selected waifu in Waifu Menu
-            Upgrades.DisplayFormatedValueText(currentWaifu.cost, text_unlock_cost, singificant_figures);
+        changeButtonText();
+        //Display cost of selected waifu in Waifu Menu
+        Upgrades.DisplayFormatedValueText(currentWaifu.cost, text_unlock_cost, singificant_figures);
 
 
 
         //Render Sprite
-            //Changes current Waifu sprite from the Waifu List
-            Waifu_spriteRenderer.sprite = currentWaifu.sprite;
-            //Changes selected waifu in the game
-            Waifu_INGAME.sprite = selectedWaifu.sprite;
+        //Changes current Waifu sprite from the Waifu List
+        Waifu_spriteRenderer.sprite = currentWaifu.sprite;
+        //Changes selected waifu in the game
+        Waifu_INGAME.sprite = selectedWaifu.sprite;
 
+        
     }
 
     public void moveToNextWaifu()
@@ -177,7 +191,7 @@ public class Waifu_Selector : MonoBehaviour
         if (!waifu.isUnlocked)
         {
             upgradeButton_text.text = "Unlock";
-            
+
         }
         else
         {
@@ -187,5 +201,47 @@ public class Waifu_Selector : MonoBehaviour
         }
 
     }
-    
+
+
+    void Save()
+    {
+        for(int a = 0; a < Waifu_list.Length; a++)
+        {
+            isUnlockedSave[a] = Waifu_list[a].isUnlocked;
+        }
+
+        SaveGame.Save<bool[]>("Save Waifu", isUnlockedSave);
+        SaveGame.Save<int>("Selected Waifu", selected_waifu);
+    }
+
+    void Load()
+    {
+        Waifu_data temporal_data;
+        //Uses cost array lenght to loop through all waifus
+        
+        for (int i = 0; i < number_of_waifus; i++)
+        {
+            //Load Texture
+            temporal_data.sprite = Resources.Load<Sprite>("Waifus/Waifu " + i);
+            //Set Cost
+            temporal_data.cost = Waifu_cost_array[i];
+            //Set default to non unlocked
+            temporal_data.isUnlocked = false;
+            Waifu_list[i] = temporal_data;
+            //Init with dummy
+            isUnlockedSave[i] = false;
+
+        }
+        isUnlockedSave[0] = true;
+
+        isUnlockedSave = SaveGame.Load<bool[]>("Save Waifu",isUnlockedSave);
+
+        for (int a = 0; a < Waifu_list.Length; a++)
+        {
+            Waifu_list[a].isUnlocked = isUnlockedSave[a];
+        }
+
+        selected_waifu = SaveGame.Load<int>("Selected Waifu", selected_waifu);
+
+    }
 }
