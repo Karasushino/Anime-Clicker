@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using BayatGames.SaveGameFree;
 
 
 
@@ -26,7 +25,7 @@ public class Upgrades : MonoBehaviour
     private const float headPat_level_exponential = 4f;
     [SerializeField]
     [Tooltip("The amount of time that needs to pass before auto clicking in s")]
-    private float autoClick_timer = 4.0f;
+    private float autoClick_timer = 1.0f;
     private float startTimer = 0f;
     [SerializeField]
     [Tooltip("The % that the timer will be reduced by")]
@@ -66,13 +65,12 @@ public class Upgrades : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Load();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Save();
         switch (UpgradeSelectedState.SelectedUpgrade)
         {
             case Upgrade.HEADPAT:
@@ -221,31 +219,7 @@ public class Upgrades : MonoBehaviour
         
     }
 
-    //Save//Load
-
-    void Save()
-    {
-        
-        //This just saves all
-        SaveGame.Save<int>("Headpat Level", headPat_level);
-        SaveGame.Save<int>("Autoclick Level", AutoClick_level);
-        SaveGame.Save<float>("Autoclick Timer", autoClick_timer);
-        SaveGame.Save<float>("Headpat Cost", headPat_cost);
-        SaveGame.Save<float>("Autoclick Cost", autoClicker_cost);
-
-    }
-
-    void Load()
-    {
-        //Load data to variables
-        headPat_level = SaveGame.Load<int>("Headpat Level", headPat_level);
-        AutoClick_level = SaveGame.Load<int>("Autoclick Level", AutoClick_level);
-        autoClick_timer = SaveGame.Load<float>("Autoclick Timer", autoClick_timer);
-        headPat_cost = SaveGame.Load<float>("Headpat Cost", headPat_cost);
-        autoClicker_cost = SaveGame.Load<float>("Autoclick Cost", autoClicker_cost);
-    }
-
-   
+    
     //Utility helpers
 
 
