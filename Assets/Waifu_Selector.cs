@@ -69,30 +69,15 @@ public class Waifu_Selector : MonoBehaviour
 
 
     // Start is called before the first frame update
-   
+
     void Awake()
     {
         //LOADS WAIFU DATA AND ADDS TO A LIST WHERE ALL WAIFU DATA IS STORED
         //Temporal Variables
-        
-
-        //Waifu_data temporal_data;
-        ////Uses cost array lenght to loop through all waifus
-        //for (int i = 0; i < number_of_waifus; i++)
-        //{
-        //    //Load Texture
-        //    temporal_data.sprite = Resources.Load<Sprite>("Waifus/Waifu " + i);
-        //    //Set Cost
-        //    temporal_data.cost = Waifu_cost_array[i];
-        //    //Set default to non unlocked
-        //    temporal_data.isUnlocked = false;
-        //    Waifu_list[i] = temporal_data;
-
-        //}
-
-        //Waifu_list[0].isUnlocked = true;
 
         Load();
+        
+
     }
 
 
@@ -118,7 +103,8 @@ public class Waifu_Selector : MonoBehaviour
         //Changes selected waifu in the game
         Waifu_INGAME.sprite = selectedWaifu.sprite;
 
-        
+
+
     }
 
     public void moveToNextWaifu()
@@ -205,7 +191,7 @@ public class Waifu_Selector : MonoBehaviour
 
     void Save()
     {
-        for(int a = 0; a < Waifu_list.Length; a++)
+        for (int a = 0; a < Waifu_list.Length; a++)
         {
             isUnlockedSave[a] = Waifu_list[a].isUnlocked;
         }
@@ -218,7 +204,7 @@ public class Waifu_Selector : MonoBehaviour
     {
         Waifu_data temporal_data;
         //Uses cost array lenght to loop through all waifus
-        
+
         for (int i = 0; i < number_of_waifus; i++)
         {
             //Load Texture
@@ -234,7 +220,7 @@ public class Waifu_Selector : MonoBehaviour
         }
         isUnlockedSave[0] = true;
 
-        isUnlockedSave = SaveGame.Load<bool[]>("Save Waifu",isUnlockedSave);
+        isUnlockedSave = SaveGame.Load<bool[]>("Save Waifu", isUnlockedSave);
 
         for (int a = 0; a < Waifu_list.Length; a++)
         {
@@ -244,4 +230,6 @@ public class Waifu_Selector : MonoBehaviour
         selected_waifu = SaveGame.Load<int>("Selected Waifu", selected_waifu);
 
     }
+
+    
 }

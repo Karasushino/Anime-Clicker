@@ -26,7 +26,7 @@ public class ClickerCounter : MonoBehaviour
     //Number of Current Clicks left to fill bar
     public static int numberOfClicks = barOffset;
     //Times the bar has been filled x Upgrade level
-    public static float waifuPoints = 1000000000000;
+    public static float waifuPoints = 0;
 
     [SerializeField]
     private AudioSource headPatSFX;
@@ -60,6 +60,8 @@ public class ClickerCounter : MonoBehaviour
         Load();
         tapParticlesObject = GameObject.Find("Tap Particle");
         tapParticle = tapParticlesObject.GetComponent<ParticleSystem>();
+        
+        
     }
 
     // Update is called once per frame
@@ -145,19 +147,21 @@ public class ClickerCounter : MonoBehaviour
     void Save()
     {
         SaveGame.Save<int>("Total Clicks", totalClicks);
-        
+
         SaveGame.Save<int>("Number Clicks", numberOfClicks);
         SaveGame.Save<float>("Waifu Points", waifuPoints);
     }
 
     private void Load()
     {
-        totalClicks = SaveGame.Load<int>("Total Clicks");
-       
-        numberOfClicks = SaveGame.Load<int>("Number Clicks");
-        waifuPoints = SaveGame.Load<float>("Waifu Points");
-        
+        totalClicks = SaveGame.Load<int>("Total Clicks",totalClicks);
+
+        numberOfClicks = SaveGame.Load<int>("Number Clicks", numberOfClicks);
+        waifuPoints = SaveGame.Load<float>("Waifu Points",waifuPoints);
+
     }
+
 }
+
 
    
