@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using EasyMobile;
 using UnityEngine.UI;
+using static ClickerCounter;
 
 
 public class AdManager : MonoBehaviour
 {
-    public Text hello;
 
     private float horribleTimer = 10f;
     private float horribleTimerStart = 0f;
@@ -19,16 +19,10 @@ public class AdManager : MonoBehaviour
             RuntimeManager.Init();
         }
 
-        RuntimeManager.Init();
     }
 
 
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+   
 
     // Update is called once per frame
     void Update()
@@ -37,17 +31,11 @@ public class AdManager : MonoBehaviour
         //Because of horrible fix...
         InitializeBannerAd();
 
-       
-
 
     }
 
-    public void ShowRewardedAd()
-    {
-        Advertising.ShowRewardedAd();
-        
-    }
-
+   
+    //Private Functions
     void InitializeBannerAd()
     {
         //All This shit is because it wont start the banner if called on Start
