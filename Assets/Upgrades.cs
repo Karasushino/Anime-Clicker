@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using BayatGames.SaveGameFree;
+using System;
+
 
 
 
@@ -66,7 +68,9 @@ public class Upgrades : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Load();
+        //Comment Load before Build, also in all places where you load. That will reset the build.
+
+        //Load();
     }
 
     // Update is called once per frame
@@ -249,18 +253,19 @@ public class Upgrades : MonoBehaviour
     //Utility helpers
 
 
-    static float Round(float value, int digits)
+    static double Round(double value, int digits)
     {
-        float mult = Mathf.Pow(10.0f, (float)digits);
-        return Mathf.Round(value * mult) / mult;
+        double mult = Mathf.Pow(10.0f, (float)digits);
+        return Math.Round(value * mult) / mult;
+        
     }
 
     //Display Score Rounded
-    public static void DisplayFormatedValueText(float score, TextMeshProUGUI DisplayText, int digits)
+    public static void DisplayFormatedValueText(double score, TextMeshProUGUI DisplayText, int digits)
     {
 
-        float Million = 1000000f;
-        float Billion = 1000000000f;
+        double Million = 1000000f;
+        double Billion = 1000000000f;
 
         //If over a Million change to M
 
@@ -268,7 +273,7 @@ public class Upgrades : MonoBehaviour
         if (score >= Billion)
         {
 
-            float PointsDisplay = ((float)score / Billion);
+            double PointsDisplay = (score / Billion);
             PointsDisplay = Round(PointsDisplay, digits);
 
             DisplayText.text = PointsDisplay.ToString() + " B";
@@ -276,7 +281,7 @@ public class Upgrades : MonoBehaviour
         else if (score >= Million)
         {
 
-            float PointsDisplay = ((float)score / Million);
+            double PointsDisplay = (score / Million);
             PointsDisplay = Round(PointsDisplay, digits);
 
             DisplayText.text = PointsDisplay.ToString() + " M";

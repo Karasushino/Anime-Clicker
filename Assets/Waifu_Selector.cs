@@ -10,9 +10,10 @@ public class Waifu_Selector : MonoBehaviour
 {
 
     //Create Array, set size in Editor
+    //MUST BE EQUAL TO NUMBER_OF_WAIFUS
     [SerializeField]
     [Tooltip("Set the number of waifus in the game and assign them a cost")]
-    private int[] Waifu_cost_array;
+    private long[] Waifu_cost_array;
 
     //Drag SpriteRenderer from Editor
     [SerializeField]
@@ -27,7 +28,8 @@ public class Waifu_Selector : MonoBehaviour
     //Sets the number of waifus that there is in the game
     //IMPORTANT TO CHANGE THIS WHENEVER A WAIFU IS ADDED
     //CAN'T THINK OF ANOTHER SYSTEM RIGHT NOW (Without editor drag and drop, and I want to load from resources)
-    const int number_of_waifus = 8;
+    //ALSO NEEDS TO CHANGE IN THE EDITOR!!!
+    const int number_of_waifus = 11;
 
     //Variable that will keep track of current selected waifu
     [SerializeField]
@@ -54,7 +56,7 @@ public class Waifu_Selector : MonoBehaviour
     struct Waifu_data
     {
         public Sprite sprite;
-        public int cost;
+        public long cost;
         public bool isUnlocked;
     }
 
@@ -75,8 +77,10 @@ public class Waifu_Selector : MonoBehaviour
         //LOADS WAIFU DATA AND ADDS TO A LIST WHERE ALL WAIFU DATA IS STORED
         //Temporal Variables
 
+       
+
         Load();
-        
+
 
     }
 
@@ -100,6 +104,7 @@ public class Waifu_Selector : MonoBehaviour
         //Render Sprite
         //Changes current Waifu sprite from the Waifu List
         Waifu_spriteRenderer.sprite = currentWaifu.sprite;
+        Debug.Log("Cost of waifu: " + currentWaifu.cost);
         //Changes selected waifu in the game
         Waifu_INGAME.sprite = selectedWaifu.sprite;
 
@@ -218,16 +223,20 @@ public class Waifu_Selector : MonoBehaviour
             isUnlockedSave[i] = false;
 
         }
-        isUnlockedSave[0] = true;
 
-        isUnlockedSave = SaveGame.Load<bool[]>("Save Waifu", isUnlockedSave);
 
-        for (int a = 0; a < Waifu_list.Length; a++)
-        {
-            Waifu_list[a].isUnlocked = isUnlockedSave[a];
-        }
+        //Comment all this before build
 
-        selected_waifu = SaveGame.Load<int>("Selected Waifu", selected_waifu);
+        //isUnlockedSave[0] = true;
+
+        //isUnlockedSave = SaveGame.Load<bool[]>("Save Waifu", isUnlockedSave);
+
+        //for (int a = 0; a < Waifu_list.Length; a++)
+        //{
+        //    Waifu_list[a].isUnlocked = isUnlockedSave[a];
+        //}
+
+        //selected_waifu = SaveGame.Load<int>("Selected Waifu", selected_waifu);
 
     }
 

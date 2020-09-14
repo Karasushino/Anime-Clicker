@@ -56,12 +56,13 @@ public class ClickerCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Comment Load before Build, also in all places where you load. That will reset the build.
+        //Load();
 
-        Load();
         tapParticlesObject = GameObject.Find("Tap Particle");
         tapParticle = tapParticlesObject.GetComponent<ParticleSystem>();
-        
-        
+
+
     }
 
     // Update is called once per frame
@@ -154,12 +155,13 @@ public class ClickerCounter : MonoBehaviour
 
     private void Load()
     {
-        totalClicks = SaveGame.Load<int>("Total Clicks",totalClicks);
+       totalClicks = SaveGame.Load<int>("Total Clicks", totalClicks);
 
-        numberOfClicks = SaveGame.Load<int>("Number Clicks", numberOfClicks);
-        waifuPoints = SaveGame.Load<float>("Waifu Points",waifuPoints);
+       numberOfClicks = SaveGame.Load<int>("Number Clicks", numberOfClicks);
+        waifuPoints = SaveGame.Load<float>("Waifu Points", waifuPoints);
 
     }
+
 
 }
 
