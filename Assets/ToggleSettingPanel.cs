@@ -13,7 +13,7 @@ public class ToggleSettingPanel : MonoBehaviour
 
     public void toggleSettingPanel()
     {
-        if(!isDisplayed)
+        if (!isDisplayed)
         {
             SettingsPanel.SetActive(true);
             isDisplayed = true;
@@ -27,4 +27,8 @@ public class ToggleSettingPanel : MonoBehaviour
         }
     }
 
+    public void setNotDisplaying()
+    {
+        isDisplayed = false;
+    }
 }

@@ -227,16 +227,17 @@ public class Waifu_Selector : MonoBehaviour
 
         //Comment all this before build
 
-        //isUnlockedSave[0] = true;
+        //Sets first waifu to unlocked by default since price is 0
+        isUnlockedSave[0] = true;
 
-        //isUnlockedSave = SaveGame.Load<bool[]>("Save Waifu", isUnlockedSave);
+        isUnlockedSave = SaveGame.Load<bool[]>("Save Waifu", isUnlockedSave);
 
-        //for (int a = 0; a < Waifu_list.Length; a++)
-        //{
-        //    Waifu_list[a].isUnlocked = isUnlockedSave[a];
-        //}
+        for (int a = 0; a < isUnlockedSave.Length; a++)
+        {
+            Waifu_list[a].isUnlocked = isUnlockedSave[a];
+        }
 
-        //selected_waifu = SaveGame.Load<int>("Selected Waifu", selected_waifu);
+        selected_waifu = SaveGame.Load<int>("Selected Waifu", selected_waifu);
 
     }
 

@@ -57,7 +57,7 @@ public class ClickerCounter : MonoBehaviour
     void Start()
     {
         //Comment Load before Build, also in all places where you load. That will reset the build.
-        //Load();
+        Load();
 
         tapParticlesObject = GameObject.Find("Tap Particle");
         tapParticle = tapParticlesObject.GetComponent<ParticleSystem>();

@@ -12,6 +12,7 @@ public class AdManager : MonoBehaviour
     private float horribleTimer = 10f;
     private float horribleTimerStart = 0f;
     private bool bannerInitialized = false;
+    private bool onWaifuMenu = false;
     void Awake()
     {
         if (!RuntimeManager.IsInitialized())
@@ -22,7 +23,7 @@ public class AdManager : MonoBehaviour
     }
 
 
-   
+
 
     // Update is called once per frame
     void Update()
@@ -30,11 +31,12 @@ public class AdManager : MonoBehaviour
         //This will only run once...
         //Because of horrible fix...
         InitializeBannerAd();
-
+        if (onWaifuMenu)
+            HideBannerAdd();
 
     }
 
-   
+
     //Private Functions
     void InitializeBannerAd()
     {
@@ -58,8 +60,8 @@ public class AdManager : MonoBehaviour
                 bannerInitialized = true;
             }
         }
-        
-        
+
+
     }
 
     public void ShowBannerAd()
@@ -69,5 +71,16 @@ public class AdManager : MonoBehaviour
     public void HideBannerAdd()
     {
         Advertising.HideBannerAd();
+    }
+
+
+    public void onWaifuMenuON()
+    {
+        onWaifuMenu = true;
+    }
+
+    public void onWaifuMenuOff()
+    {
+        onWaifuMenu = false;
     }
 }
