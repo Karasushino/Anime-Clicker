@@ -13,28 +13,15 @@ public class RewardedAd : MonoBehaviour
 {
     public TextMeshProUGUI rewardedAddText;
     [SerializeField]
-    [Tooltip("The range between stages of points IN MILLIONS")]
-    private float[] RewardStagesRange;
-    [SerializeField]
-    [Tooltip("REWARD AFTER WATCHING AD IN MILLIONS")]
-    private float[] RewardStagesAmount;
+    [Tooltip("The percentage of your max points that will be added after watching Rewarded A")]
+    [Range(0.0f, 1.0f)]
+    public float percentageScale = 0.2f;
+
 
     float pointsToAdd = 0;
 
 
-    private void Start()
-    {
-        for(int i = 0; i < RewardStagesAmount.Length;i++)
-        {
-            //Make everything in the millions range
-            RewardStagesAmount[i] *= 1000000.0f;
-        }
-        for (int i = 0; i < RewardStagesRange.Length; i++)
-        {
-            //Make everything in the millions range
-            RewardStagesRange[i] *= 1000000.0f;
-        }
-    }
+
     void OnEnable()
     {
         Advertising.RewardedAdCompleted += RewardedAdCompletedHandler;
@@ -50,22 +37,15 @@ public class RewardedAd : MonoBehaviour
 
     private void Update()
     {
-        
-        for (int i = 0; i < RewardStagesRange.Length; i++)
+        //Give the player one time 100k to make them want to watch the ad.
+        if (maxWaifuPoints < 100000)
         {
-            //If it goes out of bound it means it doesn't need checking. End point has been found.
-            if (i + 1 > RewardStagesRange.Length) 
-            {
-                return;
-            }
-            //Check the 1st range and the next range.
-            else if (maxWaifuPoints >= RewardStagesRange[i] && maxWaifuPoints < RewardStagesRange[i+1])
-            {
-                pointsToAdd = RewardStagesAmount[i];
-                Upgrades.DisplayFormatedValueText(pointsToAdd, rewardedAddText, 2);
-                Debug.Log("Points to Add" + pointsToAdd.ToString());
-            }
+            pointsToAdd = 100000;
         }
+        else
+            pointsToAdd = percentageScale * ClickerCounter.maxWaifuPoints;
+
+        Upgrades.DisplayFormatedValueText(pointsToAdd, rewardedAddText, 2);
 
     }
 
