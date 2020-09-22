@@ -27,6 +27,8 @@ public class ClickerCounter : MonoBehaviour
     public static int numberOfClicks = barOffset;
     //Times the bar has been filled x Upgrade level
     public static float waifuPoints = 0;
+    //Top scopre
+    public static float maxWaifuPoints = 0;
 
     [SerializeField]
     private AudioSource headPatSFX;
@@ -57,7 +59,7 @@ public class ClickerCounter : MonoBehaviour
     void Start()
     {
         //Comment Load before Build, also in all places where you load. That will reset the build.
-        Load();
+        //Load();
 
         tapParticlesObject = GameObject.Find("Tap Particle");
         tapParticle = tapParticlesObject.GetComponent<ParticleSystem>();
@@ -124,8 +126,17 @@ public class ClickerCounter : MonoBehaviour
             numberOfClicks = barOffset;
             //Checks for Data on Points multipliers and adds the points
             Upgrades.addWaifuPoints();
+
+
             FullBarSFX.Play();
         }
+
+        //Check if new score is higher than maxScore. This could be changed to check when points are added. But can't be bothered typing 2 times.
+        if (maxWaifuPoints < waifuPoints)
+        {
+            maxWaifuPoints = waifuPoints;
+        }
+
 
         Save();
     }
@@ -151,17 +162,23 @@ public class ClickerCounter : MonoBehaviour
 
         SaveGame.Save<int>("Number Clicks", numberOfClicks);
         SaveGame.Save<float>("Waifu Points", waifuPoints);
+        SaveGame.Save<float>("Record Waifu Points", maxWaifuPoints);
+
     }
 
     private void Load()
     {
-       totalClicks = SaveGame.Load<int>("Total Clicks", totalClicks);
+        totalClicks = SaveGame.Load<int>("Total Clicks", totalClicks);
 
-       numberOfClicks = SaveGame.Load<int>("Number Clicks", numberOfClicks);
+        numberOfClicks = SaveGame.Load<int>("Number Clicks", numberOfClicks);
         waifuPoints = SaveGame.Load<float>("Waifu Points", waifuPoints);
-
+        maxWaifuPoints = SaveGame.Load<float>("Record Waifu Points", maxWaifuPoints);
     }
 
+    public void DebugAddPoints()
+    {
+        waifuPoints += 100000;
+    }
 
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EasyMobile;
 using static ClickerCounter;
+using static Upgrades; 
 using TMPro;
 
 
@@ -11,7 +12,29 @@ using TMPro;
 public class RewardedAd : MonoBehaviour
 {
     public TextMeshProUGUI rewardedAddText;
+    [SerializeField]
+    [Tooltip("The range between stages of points IN MILLIONS")]
+    private float[] RewardStagesRange;
+    [SerializeField]
+    [Tooltip("REWARD AFTER WATCHING AD IN MILLIONS")]
+    private float[] RewardStagesAmount;
 
+    float pointsToAdd = 0;
+
+
+    private void Start()
+    {
+        for(int i = 0; i < RewardStagesAmount.Length;i++)
+        {
+            //Make everything in the millions range
+            RewardStagesAmount[i] *= 1000000.0f;
+        }
+        for (int i = 0; i < RewardStagesRange.Length; i++)
+        {
+            //Make everything in the millions range
+            RewardStagesRange[i] *= 1000000.0f;
+        }
+    }
     void OnEnable()
     {
         Advertising.RewardedAdCompleted += RewardedAdCompletedHandler;
@@ -27,17 +50,21 @@ public class RewardedAd : MonoBehaviour
 
     private void Update()
     {
-        if (waifuPoints >= 0 && waifuPoints < 10000000)
+        
+        for (int i = 0; i < RewardStagesRange.Length; i++)
         {
-            rewardedAddText.text = "100K points";
-        }
-        else if (waifuPoints >= 10000000 && waifuPoints < 100000000)
-        {
-            rewardedAddText.text = "1.5M points";
-        }
-        else if (waifuPoints >= 500000000)
-        {
-            rewardedAddText.text = "50M points";
+            //If it goes out of bound it means it doesn't need checking. End point has been found.
+            if (i + 1 > RewardStagesRange.Length) 
+            {
+                return;
+            }
+            //Check the 1st range and the next range.
+            else if (maxWaifuPoints >= RewardStagesRange[i] && maxWaifuPoints < RewardStagesRange[i+1])
+            {
+                pointsToAdd = RewardStagesAmount[i];
+                Upgrades.DisplayFormatedValueText(pointsToAdd, rewardedAddText, 2);
+                Debug.Log("Points to Add" + pointsToAdd.ToString());
+            }
         }
 
     }
@@ -62,20 +89,10 @@ public class RewardedAd : MonoBehaviour
         //Just ads the points when add completed apparently
         //Increases rewards to make want player watch more ads
         //Potentiall this will be changed from current points to MAX obtained points. 
-        if (waifuPoints >= 0 && waifuPoints < 10000000)
-        {
-            waifuPoints += 100000;
-        }
-        else if (waifuPoints >= 10000000 && waifuPoints < 100000000)
-        {
-            waifuPoints += 1500000;
-        }
-        else if(waifuPoints >= 500000000)
-        {
-            waifuPoints += 50000000;
-        }
+        ClickerCounter.waifuPoints += pointsToAdd;
 
-        
+
+
     }
     void RewardedAdSkippedHandler(RewardedAdNetwork network, EasyMobile.AdPlacement location)
     {

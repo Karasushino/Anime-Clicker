@@ -205,6 +205,7 @@ public class Upgrades : MonoBehaviour
         float pointsToAdd = 1f * (Mathf.Pow((float)headPat_level, headPat_level_exponential));
         Debug.Log("Points Added:" + pointsToAdd);
         ClickerCounter.waifuPoints += pointsToAdd;
+
     }
 
     //UI DISPLAY FUNCTIONS
