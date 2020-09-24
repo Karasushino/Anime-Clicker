@@ -289,6 +289,8 @@ public class Upgrades : MonoBehaviour
         }
         else
         {
+            //Round to int.
+            score = Math.Round(score);
             DisplayText.text = score.ToString();
         }
 

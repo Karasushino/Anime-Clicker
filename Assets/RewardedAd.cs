@@ -44,7 +44,8 @@ public class RewardedAd : MonoBehaviour
         }
         else
             pointsToAdd = percentageScale * ClickerCounter.maxWaifuPoints;
-
+        //Round decimals to nearest int.
+        pointsToAdd = Mathf.Round(pointsToAdd);
         Upgrades.DisplayFormatedValueText(pointsToAdd, rewardedAddText, 2);
 
     }
