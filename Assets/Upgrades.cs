@@ -70,7 +70,7 @@ public class Upgrades : MonoBehaviour
     {
         //Comment Load before Build, also in all places where you load. That will reset the build.
 
-        //Load();
+        Load();
     }
 
     // Update is called once per frame

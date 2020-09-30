@@ -17,6 +17,7 @@ public class RewardedAd : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float percentageScale = 0.2f;
 
+    public GameObject errorPanel;
 
     float pointsToAdd = 0;
 
@@ -60,6 +61,8 @@ public class RewardedAd : MonoBehaviour
         else
         {
             Debug.Log("ShowRewardedAd() was not ready");
+            errorPanel.SetActive(true);
+
         }
 
 
