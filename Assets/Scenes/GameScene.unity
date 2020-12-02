@@ -1613,18 +1613,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1537016768}
-        m_TargetAssemblyTypeName: ToggleSettingPanel, Assembly-CSharp
-        m_MethodName: setNotDisplaying
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 510930777}
         m_TargetAssemblyTypeName: 
         m_MethodName: setClickingDetectionON
@@ -8525,6 +8513,7 @@ GameObject:
   - component: {fileID: 510930779}
   - component: {fileID: 510930781}
   - component: {fileID: 510930780}
+  - component: {fileID: 510930782}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8687,6 +8676,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SettingsPanel: {fileID: 140873736}
   isDisplayed: 0
+--- !u!114 &510930782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510930772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5c468e64451d044905a842e15c368a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -9820,8 +9821,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636717700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6160796, y: 0.935, z: 98.80638}
-  m_LocalScale: {x: 1.08865, y: 2.1947107, z: 1}
+  m_LocalPosition: {x: 1.5556, y: 0.935, z: 98.80638}
+  m_LocalScale: {x: 1.4136331, y: 2.1947107, z: 1}
   m_Children: []
   m_Father: {fileID: 1841611454}
   m_RootOrder: 1
@@ -14913,7 +14914,6 @@ GameObject:
   - component: {fileID: 1537016771}
   - component: {fileID: 1537016770}
   - component: {fileID: 1537016769}
-  - component: {fileID: 1537016768}
   m_Layer: 5
   m_Name: Get Points Button
   m_TagString: Untagged
@@ -14942,20 +14942,6 @@ RectTransform:
   m_AnchoredPosition: {x: -197.93, y: 56}
   m_SizeDelta: {x: 131.63, y: 47.700012}
   m_Pivot: {x: 0.5, y: 0.5000008}
---- !u!114 &1537016768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537016766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13945e7653aec104782e9d2cbaa1aec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SettingsPanel: {fileID: 2009115569}
-  isDisplayed: 1
 --- !u!114 &1537016769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15000,9 +14986,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1537016768}
-        m_TargetAssemblyTypeName: ToggleSettingPanel, Assembly-CSharp
-        m_MethodName: toggleSettingPanel
+      - m_Target: {fileID: 510930778}
+        m_TargetAssemblyTypeName: SFX_script, Assembly-CSharp
+        m_MethodName: playMenuClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15012,10 +14998,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 510930778}
-        m_TargetAssemblyTypeName: SFX_script, Assembly-CSharp
-        m_MethodName: playMenuClick
-        m_Mode: 1
+      - m_Target: {fileID: 2009115569}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
