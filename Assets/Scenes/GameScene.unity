@@ -8572,7 +8572,7 @@ MonoBehaviour:
   decreasePercentage: 0.035
   headPat_cost: 32
   autoClicker_cost: 16
-  headPat_cost_multiplier: 1.2
+  headPat_cost_multiplier: 1.1
   autoClicker_cost_multiplier: 0.5
   UpgradeTitle: {fileID: 1049232907}
   UpgradeDescription: {fileID: 594637979}
@@ -8629,7 +8629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c400d54fd4614db7ba1c89efe2e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Waifu_cost_array: 0000000000000000c0c62d0000000000801d2c04000000000095ba0a0000000080a1031c0000000080ac6e370000000000ca9a3b0000000000180d8f000000000076dd4101000000004827ad0100000000e40b5402000000
+  Waifu_cost_array: 0000000000000000c0c62d0000000000801d2c040000000080f5e409000000008050de1900000000008f42330000000040612237000000000056218300000000008d380c01000000000264890100000080cc572702000000
   Waifu_spriteRenderer: {fileID: 142661261}
   Waifu_INGAME: {fileID: 470829822}
   current_waifu: 0
@@ -11667,7 +11667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rewardedAddText: {fileID: 1873545347}
-  percentageScale: 0.2
+  percentageScale: 0.32
   errorPanel: {fileID: 2009115569}
 --- !u!1 &1017917953
 GameObject:

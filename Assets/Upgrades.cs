@@ -25,7 +25,7 @@ public class Upgrades : MonoBehaviour
     private int AutoClick_level = 1;
     [SerializeField]
     [Tooltip("The amount that points are going to increase exponentially")]
-    private const float headPat_level_exponential = 4f;
+    private const float headPat_level_exponential = 4.2f;
     [SerializeField]
     [Tooltip("The amount of time that needs to pass before auto clicking in s")]
     private float autoClick_timer = 4.0f;
